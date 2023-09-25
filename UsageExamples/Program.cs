@@ -10,6 +10,8 @@ namespace UsageExamples
             string str = @"""Rockets are cool. There’s no getting around that."" – Elon Musk";
             Console.WriteLine(str);
             Console.WriteLine("Words in above: " + StringUtils.CountWords(str));
+
+
         }
     }
 }

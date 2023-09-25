@@ -1,33 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace MiJenner
 {
     public static class StringUtils
     {
+        public static char[] charactersToReplace = { '\'', '"', '!', '|', '+', '-', '*', '/', '\\', '#', '$', '%', '&', '^', '(', ')', '[', ']', '{', '}', '.', ',', ';', '–', '—', '–',
+                '>', '<', '=' };
+
         public static int CountWords(string input)
         {
+            input = ReplaceSpecialCharactersWithSpace(input);
             string[] words = input.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             return words.Length;
         }
 
-        public static int CountWords2(string input)
+        public static string ReplaceSpecialCharactersWithNothing(string input)
         {
-            // Define a regular expression pattern to match non-word characters.
-            // Use the \p{L} Unicode category to match any letter (including international characters).
-            string pattern = @"[^\p{L}\s]+";
+            StringBuilder result = new StringBuilder(input);
 
-            // Use the regular expression to replace non-word characters with spaces.
-            string cleanedInput = Regex.Replace(input, pattern, " ");
+            foreach (char character in charactersToReplace)
+            {
+                result.Replace(character.ToString(), string.Empty);
+            }
 
-            // Split the cleaned input string by whitespace characters and remove any empty entries.
-            string[] words = cleanedInput.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            return result.ToString();
+        }
 
-            return words.Length;
+        public static string ReplaceSpecialCharactersWithSpace(string input)
+        {
+            StringBuilder result = new StringBuilder(input);
+
+            foreach (char character in charactersToReplace)
+            {
+                result.Replace(character, ' ');
+            }
+
+            return result.ToString();
         }
 
         public static bool IsBinaryString(string input)
