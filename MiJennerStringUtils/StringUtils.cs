@@ -1,5 +1,5 @@
-﻿using System;
-using System.Text;
+﻿using System; 
+using System.Text; 
 
 namespace MiJenner
 {
@@ -60,6 +60,5 @@ namespace MiJenner
         {
             return string.Join("", input.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries));
         }
-
     }
 }
